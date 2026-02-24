@@ -166,14 +166,14 @@
             var len = lengthBytesUTF8(account) + 1;
             var strPtr = _malloc(len);
             stringToUTF8(account, strPtr, len);
-            Module.dynCall_vi(callBackAccountChange, strPtr);
+            {{{ makeDynCall('vi', 'callBackAccountChange') }}}(strPtr);
         });
 
         window.NethereumEIP6963Interop.selectedEthereumProvider.on("chainChanged", function (chainId) {
             var len = lengthBytesUTF8(chainId.toString()) + 1;
             var strPtr = _malloc(len);
             stringToUTF8(chainId.toString(), strPtr, len);
-            Module.dynCall_vi(callBackChainChange, strPtr);
+            {{{ makeDynCall('vi', 'callBackChainChange') }}}(strPtr);
         });
     },
 
@@ -200,7 +200,7 @@
             var len = lengthBytesUTF8(json) + 1;
             var strPtr = _malloc(len);
             stringToUTF8(json, strPtr, len);
-            Module.dynCall_vi(callback, strPtr);
+            {{{ makeDynCall('vi', 'callback') }}}(strPtr);
         } catch (error) {
             let rpcResponseError = {
                 jsonrpc: "2.0",
@@ -212,7 +212,7 @@
             var len = lengthBytesUTF8(json) + 1;
             var strPtr = _malloc(len);
             stringToUTF8(json, strPtr, len);
-            Module.dynCall_vi(callback, strPtr);
+            {{{ makeDynCall('vi', 'callback') }}}(strPtr);
         }
     },
 
